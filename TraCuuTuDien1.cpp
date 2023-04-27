@@ -17,8 +17,8 @@ typedef struct Node {
 typedef NODE* NODEPTR;
 
 void Init(NODEPTR &pHead);
-//void Input(TuVung &x, ifstream input);
-//void Output(TuVung x);
+void Input(TuVung &x, ifstream &t_a, ifstream &t_v);
+void Output(TuVung x);
 NODEPTR CreateNode(TuVung x);
 void Insert_First(NODEPTR &pHead, TuVung x);
 void Show_List(NODEPTR pHead);
@@ -35,7 +35,9 @@ int main(){
 		cout << "Mo thanh cong !!!" << endl;
 		sleep(1);
 		system("cls");
-		
+		Input(x,t_a,t_v);
+		Output(x);
+		Show_List(a);
 	} else {
 		cout << "Mo that bai" << endl;
 	}
@@ -46,14 +48,14 @@ void Init(NODEPTR &pHead){
 	pHead = NULL;
 }
 
-//void Input(TuVung &x, ifstream input){
-//	input >> x.english;
-//	input >> x.tieng_viet;
-//}
+void Input(TuVung &x, ifstream &t_a, ifstream &t_v){
+	t_a >> x.english;
+	getline(t_v,x.tieng_viet);
+}
 
-//void Output(TuVung x){
-//	cout << x.english << ": " << x.tieng_viet << endl;
-//}
+void Output(TuVung x){
+	cout << x.english << ": " << x.tieng_viet << endl;
+}
 
 NODEPTR CreateNode(TuVung x){
 	NODEPTR newNode = new NODE;
@@ -72,6 +74,6 @@ void Show_List(NODEPTR pHead){
 	NODEPTR current;
 	while (current != NULL){
 		Output(current->info);
-		current = current->next;
+		current = current->next; 
 	}
 }
