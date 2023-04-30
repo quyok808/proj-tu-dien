@@ -21,6 +21,7 @@ void Input(TuVung &x, ifstream &t_a, ifstream &t_v);
 void Output(TuVung x);
 NODEPTR CreateNode(TuVung x);
 void Insert_First(NODEPTR &pHead, TuVung x);
+void DeleteFirst(NODEPTR &pHead);
 void Show_List(NODEPTR pHead);
 
 
@@ -35,8 +36,14 @@ int main(){
 		cout << "Mo thanh cong !!!" << endl;
 		sleep(1);
 		system("cls");
-		Input(x,t_a,t_v);
-		Output(x);
+		do {
+			Input(x,t_a,t_v);
+			Insert_First(a,x);
+			if (x.english == "-1" || x.tieng_viet == "-1"){
+				break;
+			}
+		} while(1);
+//		DeleteFirst(a); chua xoa dc cai -1
 		Show_List(a);
 	} else {
 		cout << "Mo that bai" << endl;
@@ -68,6 +75,12 @@ void Insert_First(NODEPTR &pHead, TuVung x){
 	NODEPTR newNode = CreateNode(x);
 	newNode->next = pHead;
 	pHead = newNode;
+}
+
+void DeleteFirst(NODEPTR &pHead){
+	NODEPTR pre = pHead;
+	pHead = pHead->next;
+	delete(pre);
 }
 
 void Show_List(NODEPTR pHead){
